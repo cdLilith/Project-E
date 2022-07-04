@@ -138,8 +138,26 @@ async def coinflip(ctx, side: str, bet: int):
     json.dump(users, f)    
 
 
+@client.command()
+async def commands(ctx):
+  await ctx.reply("```\n/balance - Checks the balance\n/dice {bet amout} - Plays dice game\n/coinflip {side} {bet amount} - plays coinflip\n/beg - Begs for coins (0 cooldown (broken) )\n/add {amount}\n/remove {amount}\n/aboutme - Shows info about author\n /clear {amount} - clears the said amout of messages \n```")
 
-  
+
+
+author1=discord.Embed(title="I was made by cdLilith")
+author1.set_author(name="cdLilith", url="https://github.com/cdLilith", icon_url="https://cdn.discordapp.com/avatars/983712735957229578/ccf757241ca377a05b588c753d22d052.png?size=1024")
+author1.set_thumbnail(url="https://cdn.discordapp.com/avatars/983712735957229578/ccf757241ca377a05b588c753d22d052.png?size=1024")
+author1.add_field(name="discord:", value="cdLilith#7622", inline=False)
+author1.add_field(name="github:", value=" cdLilith", inline=False)
+author1.set_footer(text="ミ๏ｖ๏彡")
+
+@client.command()
+async def aboutme(ctx):
+  await ctx.send(embed=author1)
+
+@client.command()
+async def clear(ctx , amount=5):
+  await ctx.channel.purge(limit=amount + 1)
 
 
 

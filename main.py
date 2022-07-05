@@ -159,6 +159,29 @@ async def aboutme(ctx):
 async def clear(ctx , amount=5):
   await ctx.channel.purge(limit=amount + 1)
 
+@client.command()
+async def buyproduct(ctx, huj: int):
+  users = await get_bank_data()
+  user = ctx.author
+  if huj == 1:
+    if users[str(user.id)]["wallet"] < 1000:
+      users[str(user.id)]["AW"] += 1
+      users[str(user.id)]["wallet"] -= 1000
+      await ctx.send("You bought Adam Wojczak nice")
+    else:
+      await ctx.send("ur too poor loololoolo")
+      return False
+  else:
+    await ctx.send("Not a valid product")
+
+
+
+
+
+  with open("users.json", "w") as f:
+    json.dump(users, f)
+  
+  
 
 
 @client.command()
@@ -211,6 +234,7 @@ async def open_account(user):
     return False
   else:
     users[str(user.id)] = {}
+    users[str(user.id)]["AW"] = 0
     users[str(user.id)]["wallet"] = 0
   
   with open("users.json", "w") as f:
